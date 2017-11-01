@@ -81,7 +81,7 @@ def _run_cmd(args):
                 ' '.join(cmd),
                 shell=True,
             )
-            print(result.decode('hex'))
+            print(result.decode('utf-8'))
         
         except:
             print("[ Error ] Can't run {}".format(args.conf))

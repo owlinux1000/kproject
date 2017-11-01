@@ -2,6 +2,7 @@
 
 import os
 import sys
+import json
 import argparse
 import subprocess
 from shutil import rmtree
@@ -40,8 +41,33 @@ def _new_cmd(args):
     with open(README_FILENAME, 'w') as fout:
         fout.write("# {}\n\n".format(args.project_name))
 
+    with open(CONFIG_FILENAME, 'w') as fout:
+        d = {
+            "name": args.project_name,
+            "experiments": [{ "cmd": "./".format(MAIN_FILENAME)}]
+        }
+        json.dump(d, fout)
+        
 def _run_cmd(args):
-    print(args)
+
+    with open(args.conf, 'r') as fin:
+        config = json.load(fin)
+
+    cmd = []
+    for conf in config['experiments']:
+        print(conf)
+
+    try:
+        result = subprocess.check_output(
+            cmd,
+            shell=True,
+        )
+        print(result.decode('hex'))
+        sys.exit(0)
+        
+    except:
+        print("[ Error ] Can't run {}".format(args.conf))
+        sys.exit(1)
 
 def main():
 

@@ -44,15 +44,18 @@ def _new_cmd(args):
     with open(CONFIG_FILENAME, 'w') as fout:
         d = {
             "name": args.project_name,
-            "experiments": [{ "cmd": "./{}".format(MAIN_FILENAME)}]
+            "experiments": [{ "cmd": ["./{}".format(MAIN_FILENAME), True]}]
         }
         fout.write("{}".format(json.dumps(d, fout, indent=4, sort_keys=True)))
         
 def _run_cmd(args):
+    
+    if not os.path.exists(args.conf):
+        print("[ Error ] Not found {}".format(args.conf))
+        sys.exit(1)
 
     with open(args.conf, 'r') as fin:
         config = json.load(fin)
-
 
     for conf in config['experiments']:
         cmd = []

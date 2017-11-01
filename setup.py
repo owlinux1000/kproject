@@ -9,7 +9,9 @@ setup(
     author=author,
     author_email=author_email,
     license=license,
-    entry_points={  
-        'console_scripts': 'kproject = bin.main:main'
-    },
+    packages=find_packages(),
+    entry_points="""
+    [console_scripts]
+    kproject = bin.main:main
+    """,
 )

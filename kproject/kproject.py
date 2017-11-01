@@ -46,7 +46,7 @@ def _new_cmd(args):
             "name": args.project_name,
             "experiments": [{ "cmd": "./".format(MAIN_FILENAME)}]
         }
-        json.dump(d, fout)
+        fout.write("{}".format(json.dumps(d, fout, indent=4))
         
 def _run_cmd(args):
 

@@ -53,21 +53,27 @@ def _run_cmd(args):
     with open(args.conf, 'r') as fin:
         config = json.load(fin)
 
-    cmd = []
-    for conf in config['experiments']:
-        print(conf)
 
-    try:
-        result = subprocess.check_output(
-            cmd,
-            shell=True,
-        )
-        print(result.decode('hex'))
-        sys.exit(0)
+    for conf in config['experiments']:
+        cmd = []
+        cmd.append(conf['cmd'])
+        del conf["cmd"]
+        for k, v in conf.item():
+            cmd.append("--{} {}".format(k, v))
+
+        print(cmd)
+
+        try:
+            result = subprocess.check_output(
+                ' '.join(cmd),
+                shell=True,
+            )
+            print(result.decode('hex'))
+            sys.exit(0)
         
-    except:
-        print("[ Error ] Can't run {}".format(args.conf))
-        sys.exit(1)
+        except:
+            print("[ Error ] Can't run {}".format(args.conf))
+            sys.exit(1)
 
 def main():
 

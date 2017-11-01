@@ -58,13 +58,16 @@ def _run_cmd(args):
         config = json.load(fin)
 
     for conf in config['experiments']:
+
         cmd = []
-        cmd.append(conf['cmd'])
+
+        if not cond['cmd'][1]:
+            break
+
+        cmd.append(conf['cmd'][0])
         del conf["cmd"]
         for k, v in conf.items():
             cmd.append("--{} {}".format(k, v))
-
-        print(cmd)
 
         try:
             result = subprocess.check_output(

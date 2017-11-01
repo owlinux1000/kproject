@@ -68,7 +68,7 @@ def main():
         '--conf',
         type=str,
         default='experiment.json',
-        help='Set the file of config (Default: experiment.json)'
+        help='Set the file of config (Default: kproject.json)'
     )
     
     parser_run.set_defaults(func=_run_cmd)

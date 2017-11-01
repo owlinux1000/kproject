@@ -13,7 +13,7 @@ from kproject.utils import *
 
 def _new_cmd(args):
     
-    print("[ CREATE ] New project: `{}`".format(args.project_name))
+
     exist_flag = os.path.isdir(args.project_name)
     if args.yes:
         if exist_flag:
@@ -24,31 +24,41 @@ def _new_cmd(args):
             sys.exit(1)
 
     os.mkdir(args.project_name)
+    print("[ NEW ] `{}/`".format(args.project_name))
     os.chdir(args.project_name)
     os.mkdir(DATASET_DIRNAME)
+    print("[ NEW ] `{}/`".format(DATASET_DIRNAME))
     os.mkdir(RESULT_DIRNAME)
+    print("[ NEW ] `{}/`".format(RESULT_DIRNAME))
     os.mkdir(MODEL_DIRNAME)
     os.makedirs("{}/{}".format(SRC_DIRNAME, LIB_DIRNAME))
+    print("[ NEW ] `{}/{}`".format(SRC_DIRNAME, LIB_DIRNAME))
+
+    with open(README_FILENAME, 'w') as fout:
+        fout.write("# {}\n\n".format(args.project_name))
+    print("[ NEW ] `{}`".format(README_FILENAME))
 
     with open(MAIN_FILENAME, 'w') as fout:
         fout.write(TEMPLATE_MAIN)
+    print("[ NEW ] `{}`".format(MAIN_FILENAME))
 
     os.chmod(MAIN_FILENAME, 0o744)
 
     with open(ARGS_FILENAME, 'w') as fout:
         fout.write(TEMPLATE_ARGPARSE)
-
-    with open(README_FILENAME, 'w') as fout:
-        fout.write("# {}\n\n".format(args.project_name))
-
+    print("[ NEW ] `{}`".format(ARGS_FILENAME))
+    
     with open(CONFIG_FILENAME, 'w') as fout:
         d = {
             "name": args.project_name,
             "experiments": [{ "cmd": ["./{}".format(MAIN_FILENAME), True]}]
         }
         fout.write("{}".format(json.dumps(d, fout, indent=4, sort_keys=True)))
-        
+    print("[ NEW ] `{}`".format(CONFIG_FILENAME))
+
 def _run_cmd(args):
+    
+    print("[ RUN ] `{}`".format(args.conf))
     
     if not os.path.exists(args.conf):
         print("[ Error ] Not found {}".format(args.conf))

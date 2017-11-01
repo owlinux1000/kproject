@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __init__ import *
+from setuptools import setup, find_packages  
 
 setup(
     name=name,

@@ -61,7 +61,7 @@ def _run_cmd(args):
 
         cmd = []
 
-        if not cond['cmd'][1]:
+        if not conf['cmd'][1]:
             break
 
         cmd.append(conf['cmd'][0])

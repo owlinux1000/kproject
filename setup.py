@@ -11,6 +11,6 @@ setup(
     packages=['kproject'],
     entry_points="""
     [console_scripts]
-    kproject = kproject.main:main
+    kproject = kproject.kproject:main
     """,
 )

@@ -58,7 +58,7 @@ def _run_cmd(args):
         cmd = []
         cmd.append(conf['cmd'])
         del conf["cmd"]
-        for k, v in conf.item():
+        for k, v in conf.items():
             cmd.append("--{} {}".format(k, v))
 
         print(cmd)

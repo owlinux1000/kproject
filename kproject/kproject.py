@@ -7,9 +7,9 @@ import subprocess
 from shutil import rmtree
 
 sys.path.append(os.pardir)
-#from kproject.dataset import *
-from constant import *
-from utils import *
+from kproject.dataset import *
+from kproject.constant import *
+from kproject.utils import *
 
 
 def _new_cmd(args):

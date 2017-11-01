@@ -37,5 +37,5 @@ This is main file for experiment.
 ## Install
 
 ```
-$ pip install git+
+$ pip install git+https://bitbucket.org/encry1024/kproject
 ```

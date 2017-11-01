@@ -72,7 +72,7 @@ def _run_cmd(args):
         cmd = []
 
         if not conf['cmd'][1]:
-            break
+            continue
 
         cmd.append(conf['cmd'][0])
         del conf["cmd"]

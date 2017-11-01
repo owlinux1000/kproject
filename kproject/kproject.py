@@ -3,6 +3,7 @@
 import os
 import sys
 import json
+import glob
 import argparse
 import subprocess
 from shutil import rmtree
@@ -13,7 +14,6 @@ from kproject.utils import *
 
 def _new_cmd(args):
     
-
     exist_flag = os.path.isdir(args.project_name)
     if args.yes:
         if exist_flag:
@@ -27,26 +27,26 @@ def _new_cmd(args):
     print("[ NEW ] `{}/`".format(args.project_name))
     os.chdir(args.project_name)
     os.mkdir(DATASET_DIRNAME)
-    print("[ NEW ] `{}/`".format(DATASET_DIRNAME))
+    print("[ NEW ] `{}/{}/`".format(args.project_name, DATASET_DIRNAME))
     os.mkdir(RESULT_DIRNAME)
-    print("[ NEW ] `{}/`".format(RESULT_DIRNAME))
+    print("[ NEW ] `{}/{}/`".format(args.project_name, RESULT_DIRNAME))
     os.mkdir(MODEL_DIRNAME)
     os.makedirs("{}/{}".format(SRC_DIRNAME, LIB_DIRNAME))
-    print("[ NEW ] `{}/{}`".format(SRC_DIRNAME, LIB_DIRNAME))
+    print("[ NEW ] `{}/{}/{}`".format(args.project_name, SRC_DIRNAME, LIB_DIRNAME))
 
     with open(README_FILENAME, 'w') as fout:
         fout.write("# {}\n\n".format(args.project_name))
-    print("[ NEW ] `{}`".format(README_FILENAME))
+    print("[ NEW ] `{}/{}`".format(args.project_name, README_FILENAME))
 
     with open(MAIN_FILENAME, 'w') as fout:
         fout.write(TEMPLATE_MAIN)
-    print("[ NEW ] `{}`".format(MAIN_FILENAME))
+    print("[ NEW ] `{}/{}`".format(arg.project_name, MAIN_FILENAME))
 
     os.chmod(MAIN_FILENAME, 0o744)
 
     with open(ARGS_FILENAME, 'w') as fout:
         fout.write(TEMPLATE_ARGPARSE)
-    print("[ NEW ] `{}`".format(ARGS_FILENAME))
+    print("[ NEW ] `{}/{}`".format(args.project_name, ARGS_FILENAME))
     
     with open(CONFIG_FILENAME, 'w') as fout:
         d = {
@@ -54,7 +54,7 @@ def _new_cmd(args):
             "experiments": [{ "cmd": ["./{}".format(MAIN_FILENAME), True]}]
         }
         fout.write("{}".format(json.dumps(d, fout, indent=4, sort_keys=True)))
-    print("[ NEW ] `{}`".format(CONFIG_FILENAME))
+    print("[ NEW ] `{}/{}`".format(args.project_name, CONFIG_FILENAME))
 
 def _run_cmd(args):
     
@@ -79,13 +79,14 @@ def _run_cmd(args):
         for k, v in conf.items():
             cmd.append("--{} {}".format(k, v))
 
+        print(cmd)
+        
         try:
             result = subprocess.check_output(
                 ' '.join(cmd),
                 shell=True,
             )
             print(result.decode('hex'))
-            sys.exit(0)
         
         except:
             print("[ Error ] Can't run {}".format(args.conf))
@@ -106,7 +107,7 @@ def main():
         '--yes',
         action='store_true',
         default=False,
-        help='[DANGEROUS] Overwrite project directory'
+        help='[DANGEROUS] Overwrite project directory of same name'
     )
     parser_new.set_defaults(func=_new_cmd)
 

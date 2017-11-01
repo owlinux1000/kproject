@@ -93,7 +93,7 @@ def main():
         '-c',
         '--conf',
         type=str,
-        default='experiment.json',
+        default='kproject.json',
         help='Set the file of config (Default: kproject.json)'
     )
     

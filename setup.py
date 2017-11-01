@@ -12,6 +12,6 @@ setup(
     packages=find_packages(),
     entry_points="""
     [console_scripts]
-    kproject = bin.kproject:main
+    kproject = kproject.kproject:main
     """,
 )

@@ -9,7 +9,7 @@ setup(
     author=author,
     author_email=author_email,
     license=license,
-    packages=find_packages(),
+    packages=['kproject']
     entry_points="""
     [console_scripts]
     kproject = kproject.kproject:main

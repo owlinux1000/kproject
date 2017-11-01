@@ -6,7 +6,7 @@ import argparse
 import subprocess
 from shutil import rmtree
 
-sys.path.append(os.pardir)
+#sys.path.append(os.pardir)
 from kproject.dataset import *
 from kproject.constant import *
 from kproject.utils import *

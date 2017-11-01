@@ -1,29 +1,41 @@
 # Kproject
 
-kproject is initializing tool for Machine Learning task.
+kproject is initializing tool to clean repo and to wirte experiment code quickly.
 
-## Usage
-### Install
-
-```
-$ pip install git+
-```
-
+## Tutorial
 
 ```
 $ kproject new mnist
 [ CREATE ] New project: `mnist`
-$ cd mnist; tree
-.
-├── README.md
-├── dataset
-├── log
-├── model
-├── result
-└── src
-    ├── lib
-    │   └── args.py
-    └── main.py
+$ cd mnist; ls -R
+.:
+README.md  dataset  model  result  src
 
-5 directories, 4 files
+./dataset:
+
+./model:
+
+./result:
+
+./src:
+lib  main.py
+
+./src/lib:
+args.py
+```
+
+### Useful function
+
+1. `src/lib/args.py`
+
+This script was already written template for argument parser. If you wanna add some opttion, should write this file.
+
+2. `src/main.py`
+
+This is main file for experiment.
+
+## Install
+
+```
+$ pip install git+
 ```

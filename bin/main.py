@@ -62,7 +62,7 @@ def _run_cmd(args):
         fout.write('\n'.join(hist) + '\n')
 '''        
 
-if __name__ == '__main__':
+def main():
 
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
@@ -85,3 +85,7 @@ if __name__ == '__main__':
 
     sys.exit(1)
 
+
+if __name__ == '__main__':
+    
+    main()

@@ -10,6 +10,6 @@ setup(
     author_email=author_email,
     license=license,
     entry_points={  
-        'console_scripts': 'kproject = bin:main.main'  
+        'console_scripts': 'kproject = bin.main:main'
     },
 )

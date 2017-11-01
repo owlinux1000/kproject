@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
-from __init__ import *
 from setuptools import setup, find_packages  
 
 setup(
-    name=name,
-    version=version,
-    description=description,
-    author=author,
-    author_email=author_email,
-    license=license,
+    name='kproject',
+    version="1.0.0",
+    description='Initializing tool for Machine Learning',
+    author='Chihiro Hasegawa',
+    author_email='pgm3rdlinuxor1000@gmail.com',
+    license='MIT',
     packages=['kproject'],
     entry_points="""
     [console_scripts]
-    kproject = kproject.kproject:main
+    kproject = kproject.main:main
     """,
 )

@@ -44,9 +44,9 @@ def _new_cmd(args):
     with open(CONFIG_FILENAME, 'w') as fout:
         d = {
             "name": args.project_name,
-            "experiments": [{ "cmd": "./".format(MAIN_FILENAME)}]
+            "experiments": [{ "cmd": "./{}".format(MAIN_FILENAME)}]
         }
-        fout.write("{}".format(json.dumps(d, fout, indent=4)))
+        fout.write("{}".format(json.dumps(d, fout, indent=4, sort_keys=True)))
         
 def _run_cmd(args):
 

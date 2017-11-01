@@ -14,6 +14,7 @@ from kproject.utils import *
 
 def _new_cmd(args):
     
+    print("[ CREATE ] New project: `{}`".format(args.project_name))
     exist_flag = os.path.isdir(args.project_name)
     if args.yes:
         if exist_flag:

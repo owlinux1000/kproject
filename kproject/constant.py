@@ -26,5 +26,4 @@ _parser.add_argument('--debug', action='store_true', default=False, help='Run in
 
 # Write here some option you wanna add
 
-CONFIG = _parser.parse_args()'''
-
+CONFIG = vars(_parser.parse_args())'''

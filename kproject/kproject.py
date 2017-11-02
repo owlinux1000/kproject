@@ -91,7 +91,7 @@ def _run_cmd(args):
                 print(line.rstrip().decode('utf-8'))
         
         except:
-            error("Coudl not run `{}`".format(' '.join(cmd)))
+            error("Coudl not run `{}`".format(args.conf)
             sys.exit(1)
 
 def main():

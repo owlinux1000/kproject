@@ -61,7 +61,7 @@ class MDLog(KprojectLog):
             error("Could not open `{}`".format(self.path))
             sys.exit(1)
             
-        print(h1(fname), file=self.f)
+        print(h1(fname+"\n"), file=self.f)
     
     def start(self, msg = ' '):
         _msg = "[ {} ] {} {} {}".format(

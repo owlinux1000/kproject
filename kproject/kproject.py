@@ -8,33 +8,34 @@ import argparse
 import subprocess
 from shutil import rmtree
 
-from kproject.dataset import *
 from kproject.constant import *
 from kproject.utils import *
 
 def _new_cmd(args):
-    
-    print("[ NEW ] `{}`".format(args.project_name))
 
-    exist_flag = os.path.isdir(args.project_name)
+    name = args.project_name
+    
+    info("Create new `{}`".format(name))
+
+    exist_flag = os.path.isdir(name)
 
     if args.yes:
         if exist_flag:
-            rmtree(args.project_name)
+            rmtree(name)
     else:
         if exist_flag:
-            print("[ ERROR ] `{}` has already created.".format(args.project_name))
+            error("`{}` has already created.".format(name))
             sys.exit(1)
 
-    os.mkdir(args.project_name)
-    os.chdir(args.project_name)
+    os.mkdir(name)
+    os.chdir(name)
     os.mkdir(DATASET_DIRNAME)
     os.mkdir(RESULT_DIRNAME)
     os.mkdir(MODEL_DIRNAME)
     os.makedirs("{}/{}".format(SRC_DIRNAME, LIB_DIRNAME))
 
     with open(README_FILENAME, 'w') as fout:
-        fout.write("# {}\n\n".format(args.project_name))
+        fout.write("# {}\n\n".format(name))
 
     with open(MAIN_FILENAME, 'w') as fout:
         fout.write(TEMPLATE_MAIN)
@@ -46,45 +47,50 @@ def _new_cmd(args):
     
     with open(CONFIG_FILENAME, 'w') as fout:
         d = {
-            "name": args.project_name,
             "experiments": [{ "cmd": ["./{}".format(MAIN_FILENAME), True]}]
         }
         fout.write("{}".format(json.dumps(d, fout, indent=4, sort_keys=True)))
 
 def _run_cmd(args):
-    
-    print("[ RUN ] `{}`".format(args.conf))
-    
-    if not os.path.exists(args.conf):
-        print("[ Error ] Not found {}".format(args.conf))
-        sys.exit(1)
 
+    info("Run in `{}`".format(args.conf))
+    
+    if not os.path.exists(CONFIG_FILENAME):
+        error("Could not find `{}` in `{}`".format(CONFIG_FILENAME, os.getcwd()))
+        sys.exit(1)
+        
+    if not os.path.exists(args.conf):
+        error("Could not find `{}` in `{}`".format(args.conf, os.getcwd()))
+        sys.exit(1)
+        
     with open(args.conf, 'r') as fin:
         config = json.load(fin)
 
     for conf in config['experiments']:
 
-        cmd = []
+        cmd = ["python", "-u"]
 
         if not conf['cmd'][1]:
             continue
 
         cmd.append(conf['cmd'][0])
+        
         del conf["cmd"]
         for k, v in conf.items():
             cmd.append("--{} {}".format(k, v))
 
-        print(cmd)
-        
         try:
-            result = subprocess.check_output(
-                ' '.join(cmd),
-                shell=True,
+            p = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT
             )
-            print(result.decode('utf-8'))
+            
+            for line in iter(p.stdout.readline, b''):
+                print(line.rstrip().decode('utf-8'))
         
         except:
-            print("[ Error ] Can't run {}".format(args.conf))
+            error("Coudl not run `{}`".format(' '.join(cmd)))
             sys.exit(1)
 
 def main():
@@ -102,7 +108,7 @@ def main():
         '--yes',
         action='store_true',
         default=False,
-        help='[DANGEROUS] Overwrite project directory of same name'
+        help='[DANGEROUS] Overwrite directory of the same name'
     )
     parser_new.set_defaults(func=_new_cmd)
 
@@ -114,7 +120,6 @@ def main():
         default='kproject.json',
         help='Set the file of config (Default: kproject.json)'
     )
-    
     parser_run.set_defaults(func=_run_cmd)
 
     args = parser.parse_args()
@@ -122,6 +127,7 @@ def main():
         args.func(args)
         sys.exit(0)
 
+    parser.print_help()
     sys.exit(1)
 
 

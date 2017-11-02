@@ -92,6 +92,7 @@ def _run_cmd(args):
         
         except:
             error("Coudl not run `{}`".format(args.conf))
+            print(cmd)
             sys.exit(1)
 
 def main():

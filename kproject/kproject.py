@@ -80,6 +80,9 @@ def _run_cmd(args):
             cmd.append("--{}".format(k))
             cmd.append(v)
 
+        for i, c in enumerate(cmd):
+            if type(c) != str:
+                cmd[i] = str(c)
         try:
             p = subprocess.Popen(
                 cmd,
@@ -92,7 +95,6 @@ def _run_cmd(args):
         
         except:
             error("Coudl not run `{}`".format(args.conf))
-            print(cmd)
             sys.exit(1)
 
 def main():

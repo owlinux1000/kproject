@@ -68,16 +68,17 @@ def _run_cmd(args):
 
     for conf in config['experiments']:
 
-        cmd = ["python", "-u"]
+        cmd = ['python', '-u']
 
         if not conf['cmd'][1]:
             continue
 
         cmd.append(conf['cmd'][0])
-        
         del conf["cmd"]
+        
         for k, v in conf.items():
-            cmd.append("--{} {}".format(k, v))
+            cmd.append("--{}".format(k))
+            cmd.append(v)
 
         try:
             p = subprocess.Popen(

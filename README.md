@@ -34,6 +34,20 @@ This script was already written template for argument parser. If you wanna add s
 
 This is main file for experiment.
 
+3. Logging
+
+	1. kproject.log.KprojectLog
+	
+	This is abstract class for Logging
+	
+	2. kproject.log.TxtLog
+	
+	Basic logging tools
+	   
+	3. kproject.log.MDLog
+
+	Useful logging tools. You can log as markdown.
+	
 ## Install
 
 ```

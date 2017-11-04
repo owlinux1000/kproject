@@ -50,7 +50,10 @@ def _new_cmd(args):
             "experiments": [
                 {
                     CMD_KEY: MAIN_FILENAME,
-                    EXEC_FLAG_KEY: True
+                    EXEC_FLAG_KEY: True,
+                    ARGS_KEY: {
+                        
+                    }
                 }
             ]
         }

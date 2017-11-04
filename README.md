@@ -56,11 +56,11 @@ Next, you use ```run``` command. Automatically run ```src/main.py``` with config
 }	
 ```
 
-### Useful kproject library
+## Useful kproject library
 
 kproject has some useful library. Here is useful library I think.
 
-#### About argument parser
+### About argument parser
 
 Already template argument parser has implemented by ```argparse``` in ```src/lib/args.py```. So you can easy to add some options. Then this file defined ```CONFIG```.
 
@@ -69,7 +69,7 @@ from lib.args import CONFIG
 print(CONFIG['title'])
 ```
 
-#### About logging
+### About logging
 
 Some logging class has already defined.
 

@@ -30,8 +30,8 @@ def _new_cmd(args):
     os.mkdir(name)
     os.chdir(name)
     os.mkdir(DATASET_DIRNAME)
-    os.mkdir(RESULT_DIRNAME)
-    os.mkdir(MODEL_DIRNAME)
+    os.mkdir(RESULTS_DIRNAME)
+    os.mkdir(MODELS_DIRNAME)
     os.makedirs("{}/{}".format(SRC_DIRNAME, LIB_DIRNAME))
 
     with open(README_FILENAME, 'w') as fout:

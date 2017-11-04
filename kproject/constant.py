@@ -5,14 +5,15 @@ HISTORY_FILENAME='.history'
 README_FILENAME='README.md'
 CONFIG_FILENAME='kproject.json'
 DATASET_DIRNAME='dataset'
-RESULT_DIRNAME='result'
-MODEL_DIRNAME='model'
+RESULTS_DIRNAME='results'
+MODELS_DIRNAME='models'
 SRC_DIRNAME='src'
 LIB_DIRNAME='lib'
 
 # Default program
 TEMPLATE_MAIN = '''#!/usr/bin/env python
 from lib.args import CONFIG
+from kproject.log import *
 
 if __name__ == '__main__':
     pass

@@ -32,7 +32,7 @@ Here is recommend usage of these directories.
 |models|Save your models here.|
 |results|Save your experiment results.|
 |src|Save your codes.|
-|src/lib|Save your codes of library such as reading dataset, argument parser and so on.|
+|src/lib|Save your codes of library.|
 
 Here is description some files created automatically.
 

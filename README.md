@@ -4,12 +4,12 @@ kproject is initializing tool to clean repo and to wirte experiment code quickly
 
 ## Tutorial
 
+First, you use ```new``` command of kproject and create new some directories and files such.
+
 ```
 $ kproject new mnist
-[ CREATE ] New project: `mnist`
 $ cd mnist; ls -R
-.:
-README.md  dataset  model  result  src
+README.md     dataset       kproject.json model         result        src
 
 ./dataset:
 
@@ -18,35 +18,43 @@ README.md  dataset  model  result  src
 ./result:
 
 ./src:
-lib  main.py
+lib     main.py
 
 ./src/lib:
 args.py
 ```
 
-### Useful function
+Here is recommend usage of these directories.
 
-1. `src/lib/args.py`
+|name|recommend way to use|
+|:--:|:--:|
+|dataset|Save some dataset you use.|
+|models|Save your models here.|
+|results|Save your experiment results.|
+|src|Save your codes.|
+|src/lib|Save your codes of library such as reading dataset, argument parser and so on.|
 
-This script was already written template for argument parser. If you wanna add some opttion, should write this file.
+Here is description some files created automatically.
 
-2. `src/main.py`
+|name|description|
+|:---:|:---:|
+|README.md|You should know.|
+|kproject.json|Automatically use with ```run``` command|
+|src/main.py|You should write main codes here.|
+|src/lib/args.py|This file says code of argument parser.|
 
-This is main file for experiment.
+Next, you use ```run``` command. Automatically run ```src/main.py``` with configuration of ```kproject.json```. Now, you implicitly used ```kprojec.json```, so let's see more in detail. Here is content of initial ````krpoject.json```.
 
-3. Logging
-
-	1. kproject.log.KprojectLog
-	
-	This is abstract class for Logging
-	
-	2. kproject.log.TxtLog
-	
-	Basic logging tools
-	   
-	3. kproject.log.MDLog
-
-	Useful logging tools. You can log as markdown.
+```
+{
+    "experiments": [
+        {
+            "cmd": "./src/main.py",
+            "exec?": true
+        }
+    ]
+}	
+```
 	
 ## Install
 

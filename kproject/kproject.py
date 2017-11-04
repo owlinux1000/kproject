@@ -47,7 +47,12 @@ def _new_cmd(args):
     
     with open(CONFIG_FILENAME, 'w') as fout:
         d = {
-            "experiments": [{ "cmd": ["./{}".format(MAIN_FILENAME), True]}]
+            "experiments": [
+                {
+                    CMD_KEY: MAIN_FILENAME,
+                    EXEC_FLAG_KEY: True
+                }
+            ]
         }
         fout.write("{}".format(json.dumps(d, fout, indent=4, sort_keys=True)))
 
@@ -66,15 +71,16 @@ def _run_cmd(args):
     with open(args.conf, 'r') as fin:
         config = json.load(fin)
 
-    for conf in config['experiments']:
+    for conf in config[TOP_KEY]:
 
         cmd = ['python', '-u']
 
-        if not conf['cmd'][1]:
+        if not conf[EXEC_FLAG_KEY]:
             continue
 
-        cmd.append(conf['cmd'][0])
-        del conf["cmd"]
+        cmd.append(conf[CMD_KEY])
+        del conf[CMD_KEY]
+        del conf[EXEC_FLAG_KEY]
         
         for k, v in conf.items():
             cmd.append("--{}".format(k))

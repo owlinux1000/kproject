@@ -29,3 +29,9 @@ _parser.add_argument('--debug', action='store_true', default=False, help='Run in
 # Write here some option you wanna add
 
 CONFIG = vars(_parser.parse_args())'''
+
+# About kproject.json
+
+TOP_KEY = 'experiments'
+CMD_KEY = 'cmd'
+EXEC_FLAG_KEY = 'exec?'

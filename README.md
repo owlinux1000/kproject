@@ -43,7 +43,7 @@ Here is description some files created automatically.
 |src/main.py|You should write main codes here.|
 |src/lib/args.py|This file says code of argument parser.|
 
-Next, you use ```run``` command. Automatically run ```src/main.py``` with configuration of ```kproject.json```. Now, you implicitly used ```kprojec.json```, so let's see more in detail. Here is content of initial ```krpoject.json```.
+Next, you use ```run``` command. Automatically run ```src/main.py``` with configuration of ```kproject.json```. Now, you implicitly used ```kprojec.json```, so let's see more in detail. Here is content of initial ```krpoject.json```. You can easy to see some keys.
 
 ```
 {
@@ -55,7 +55,34 @@ Next, you use ```run``` command. Automatically run ```src/main.py``` with config
     ]
 }	
 ```
-	
+
+### Useful kproject library
+
+kproject has some useful library. Here is useful library I think.
+
+#### About argument parser
+
+Already template argument parser has implemented by ```argparse``` in ```src/lib/args.py```. So you can easy to add some options. Then this file defined ```CONFIG```.
+
+```
+from lib.args import CONFIG
+print(CONFIG['title'])
+```
+
+#### About logging
+
+Some logging class has already defined.
+
+```
+from kproject.log import MDLog
+from kproject.utils import *
+log = MDLog("experiment1") #=> create /result/experiment1.md
+log.start()
+log.info("some information")
+log.info(h2("experiment 1-1")) #=> ## experiment 1-1
+log.finish()
+```
+
 ## Install
 
 ```

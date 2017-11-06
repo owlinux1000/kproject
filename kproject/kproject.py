@@ -44,7 +44,8 @@ def _new_cmd(args):
 
     with open(ARGS_FILENAME, 'w') as fout:
         fout.write(TEMPLATE_ARGPARSE)
-    
+
+    # TODO Implemented by OrderDict and modify run command
     with open(CONFIG_FILENAME, 'w') as fout:
         d = {
             "experiments": [

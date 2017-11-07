@@ -85,10 +85,11 @@ def _run_cmd(args):
         cmd.append(conf[CMD_KEY])
         del conf[CMD_KEY]
         del conf[EXEC_FLAG_KEY]
-        
-        for k, v in conf.items():
+
+        for k, v in conf[ARGS_KEY].items():
             cmd.append("--{}".format(k))
-            cmd.append(v)
+            if not v is None:
+                cmd.append(v)
 
         for i, c in enumerate(cmd):
             if type(c) != str:

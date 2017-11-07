@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='kproject',
-    version="1.0.12",
+    version="1.0.13",
     description='Initializing tool for Machine Learning',
     author='Chihiro Hasegawa',
     author_email='pgm3rdlinuxor1000@gmail.com',

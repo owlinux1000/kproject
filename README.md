@@ -61,7 +61,7 @@ Automatically run ```src/main.py``` with configuration of ```kproject.json```. N
 	    "args": {
 	    
 	    }
-		}
+	}
     ]
 }	
 ```

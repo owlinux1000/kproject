@@ -43,7 +43,14 @@ Here is description some files created automatically.
 |src/main.py|You should write main codes here.|
 |src/lib/args.py|This file says code of argument parser.|
 
-Next, you use ```run``` command. Automatically run ```src/main.py``` with configuration of ```kproject.json```. Now, you implicitly used ```kprojec.json```, so let's see more in detail. Here is content of initial ```krpoject.json```. If you added command line argument and use the argument, you should set value of ```args```.
+Next, you use ```run``` command.
+
+```
+$ kproject run
+[ INFO ] Run in `kproject.json`
+```
+
+Automatically run ```src/main.py``` with configuration of ```kproject.json```. Now, you implicitly used ```kprojec.json```, so let's see more in detail. Here is content of initial ```krpoject.json```. 
 
 ```
 {
@@ -57,6 +64,8 @@ Next, you use ```run``` command. Automatically run ```src/main.py``` with config
     ]
 }	
 ```
+
+If you added command line argument and use the argument, you should set value of ```args```.
 
 ## Useful kproject library
 

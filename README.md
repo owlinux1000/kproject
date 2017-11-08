@@ -51,9 +51,9 @@ Next, you use ```run``` command. Automatically run ```src/main.py``` with config
         {
             "cmd": "./src/main.py",
             "exec?": true,
-			"args": {
-				
-			}
+	    "args": {
+	    
+	    }
         }
     ]
 }	

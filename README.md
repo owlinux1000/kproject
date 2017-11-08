@@ -58,9 +58,10 @@ Automatically run ```src/main.py``` with configuration of ```kproject.json```. N
         {
             "cmd": "./src/main.py",
             "exec?": true,
-			"args": {
-			}
-        }
+	    "args": {
+	    
+	    }
+		}
     ]
 }	
 ```

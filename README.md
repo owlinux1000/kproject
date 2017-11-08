@@ -89,5 +89,5 @@ log.finish()
 ## Install
 
 ```
-$ pip install git+https://bitbucket.org/encry1024/kproject
+$ pip install git+https://github.com/owlinux1000/kproject
 ```
